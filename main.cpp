@@ -1,20 +1,37 @@
-#include <opencv2/opencv.hpp>
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 int main() {
-    // Load an image from file
-    cv::Mat image = cv::imread("image.jpg");
+    // Create a texture to hold the image
+    sf::Texture texture;
 
-    if (image.empty()) {
-        std::cerr << "Could not read the image" << std::endl;
-        return 1;
+    // Load the image into the texture
+    if (!texture.loadFromFile("image.png")) 
+    {
+        std::cerr << "Could not load the image" << std::endl;
+        return -1;
     }
 
-    // Display the image
-    cv::imshow("Display window", image);
+    // Create a sprite to display the texture
+    sf::Sprite sprite(texture);
 
-    // Wait for a key press
-    cv::waitKey(0);
+    // Create a window to display the image
+    sf::RenderWindow window(sf::VideoMode(texture.getSize().x, texture.getSize().y), "Image Display", sf::Style::Titlebar);
+
+    // Main loop to display the image
+    while (window.isOpen()) 
+    {
+        sf::Event event;
+        while (window.pollEvent(event)) 
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.draw(sprite);
+        window.display();
+    }
 
     return 0;
 }
