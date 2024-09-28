@@ -1,0 +1,71 @@
+# Ignore build directories
+build/
+Build/
+
+# Ignore CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore compiled object files
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Ignore static libraries
+*.a
+*.lib
+
+# Ignore generated executable files
+*.elf
+*.map
+*.hex
+
+# Ignore temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.old
+
+# Ignore generated documentation
+doc/
+docs/
+
+# Ignore IDE project files (adjust based on the IDE you're using)
+.idea/
+.vscode/
+*.code-workspace
+*.cproject
+*.project
+
+# Ignore dependency libraries (if applicable)
+lib/
+
+# Ignore MacOS specific files
+.DS_Store
+
+# Ignore archives and compressed files
+*.tar.gz
+*.zip
+*.7z
+*.tar.bz2
+*.tar.xz
+
+# Ignore Python virtual environment (if using for Python-related tasks)
+venv/
+__pycache__/
+
+# Ignore OS-generated files
+Thumbs.db
+Desktop.ini
