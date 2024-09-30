@@ -25,8 +25,15 @@ include_directories(
 	include
 	${SFML_SOURCE_DIR}/include)
 
-# Add the executable
-add_executable(main main.cpp)
+# Add the main executable
+add_executable(main src/main.cpp)
 
 # Link against X11 and other necessary libraries (for image display functionality)
 target_link_libraries(main sfml-graphics)
+
+# Add the testing executable
+add_executable(test src/test.cpp)
+
+# Link this too.
+target_link_libraries(test sfml-graphics)
+
