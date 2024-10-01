@@ -1,8 +1,5 @@
 #include "test/testcases.hpp"
 
-#include <exception>
-#include <iostream>
-
 int main() {
     try
     {

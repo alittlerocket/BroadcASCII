@@ -1,7 +1,5 @@
 #include "test/testcases.hpp"
 
-#include "SFML/Graphics.hpp"
-#include <iostream>
 
 int render_simple() 
 {

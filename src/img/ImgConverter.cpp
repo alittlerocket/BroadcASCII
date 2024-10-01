@@ -1,10 +1,4 @@
 #include "img/ImgConverter.hpp"
-#include "SFML/Graphics/Image.hpp"
-
-#include <exception>
-#include <iostream>
-#include <cstdlib>
-#include <tuple>
 
 namespace img 
 {

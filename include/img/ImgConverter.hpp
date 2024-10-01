@@ -1,8 +1,13 @@
 #ifndef IMG_CONVERTER_HPP
 #define IMG_CONVERTER_HPP
 
+#include <exception>
+#include <iostream>
+
 #include "SFML/Graphics/Image.hpp"
-#include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <tuple>
+
 
 namespace img {
 
