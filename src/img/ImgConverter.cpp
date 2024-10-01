@@ -63,8 +63,6 @@ void ImageConverter::load_RGB(bool debug = false)
     }
 }
 
-
-
 void ImageConverter::modify_RGB(float red, float green, float blue)
 {
     if (rgbMatrix_.empty())

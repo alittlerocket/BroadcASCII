@@ -1,10 +1,11 @@
-#include "SFML/Graphics/RenderWindow.hpp"
-#include "SFML/Window/WindowStyle.hpp"
-#include <SFML/Graphics.hpp>
+#include "test/testcases.hpp"
+
+#include "SFML/Graphics.hpp"
 #include <iostream>
 
-int main() {
-    // Load an image to display
+int render_simple() 
+{
+        // Load an image to display
     sf::Texture texture;
     if (!texture.loadFromFile("image.png"))
     {
