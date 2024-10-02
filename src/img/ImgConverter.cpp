@@ -32,17 +32,17 @@ void ImageConverter::load_img()
     }
 
 
-    this->width = img_.getSize().x;
-    this->height = img_.getSize().y;
+    width_ = img_.getSize().x;
+    height_ = img_.getSize().y;
 }
 
 void ImageConverter::load_RGB(bool debug = false)
 {
-    rgbMatrix_.resize(height, std::vector<std::tuple<unsigned char, unsigned char, unsigned char>>(width));
+    rgbMatrix_.resize(height_, std::vector<std::tuple<unsigned char, unsigned char, unsigned char>>(width_));
 
-    for (int y = 0; y < height; ++y)
+    for (int y = 0; y < height_; ++y)
     {
-        for (int x = 0; x < width; ++x)
+        for (int x = 0; x < width_; ++x)
         {
             sf::Color color = img_.getPixel(x, y);
             rgbMatrix_[y][x] = std::make_tuple(color.r, color.g, color.b);
@@ -64,8 +64,8 @@ void ImageConverter::modify_RGB(float red, float green, float blue)
     throw std::runtime_error("RGB matrix is empty. Did you call load_RGB()?");
 }
 
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
+    for (int y = 0; y < height_; ++y) {
+        for (int x = 0; x < width_; ++x) {
             sf::Color color = img_.getPixel(x, y);
             rgbMatrix_[y][x] = std::make_tuple(
                 static_cast<unsigned char>(color.r * red),
@@ -93,12 +93,12 @@ const RGBMatrix& ImageConverter::get_rgbMatrix() const
 
 int ImageConverter::get_width() const
 {
-    return width;
+    return width_;
 }
 
 int ImageConverter::get_height() const
 {
-    return height;
+    return height_;
 }
 
 }

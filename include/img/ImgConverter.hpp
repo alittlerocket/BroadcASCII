@@ -13,7 +13,8 @@ namespace img {
 
 using RGBMatrix = std::vector<std::vector<std::tuple<unsigned char, unsigned char, unsigned char>>>;
 
-class ImageConverter {
+class ImageConverter 
+{
 public:
     // Constructor
     ImageConverter(const std::string img_name);
@@ -38,8 +39,8 @@ private:
     sf::Image img_;
 
     // Dimensions
-    int width;
-    int height;
+    int width_;
+    int height_;
 
     // RGBMatrix, needs to be loaded.
     RGBMatrix rgbMatrix_;
