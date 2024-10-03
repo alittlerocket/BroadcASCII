@@ -3,7 +3,8 @@
 int main() {
     try
     {
-        render_simple();
+        //render_simple("test_images/4colors.png");
+        test_ascii_conversion("test_images/100x100_amogus.png");
     }
     catch (const std::exception& e)
     {

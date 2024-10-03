@@ -32,7 +32,12 @@ add_executable(main src/main.cpp)
 target_link_libraries(main sfml-graphics)
 
 # Add the testing executable
-add_executable(test_main src/test_main.cpp src/test/testcases.cpp)
+add_executable(test_main 
+    src/test_main.cpp 
+    src/test/testcases.cpp
+    src/img/ImageConverter.cpp
+    src/img/RGBConverter.cpp
+)
 
 # Link this too.
 target_link_libraries(test_main sfml-graphics)

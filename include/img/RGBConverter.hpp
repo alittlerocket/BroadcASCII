@@ -28,8 +28,7 @@ class RGBConverter
         // void append_matrix();
 
         // Getters
-        const ImgASCII get_ascii() const;
-        const RGBMatrix& get_rgbMatrices() const;
+        const std::vector<ImgASCII> get_ascii() const;
         int get_length() const;
     
     private:
