@@ -7,9 +7,6 @@
 // Img converter and rgb converter
 #include "img/ImgConverter.hpp"
 
-#include <exception>
-#include <iostream>
-
 // Creates a simple texture and displays it in a titlebar window.
 int render_simple(std::string path);
 

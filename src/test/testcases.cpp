@@ -1,7 +1,4 @@
 #include "test/testcases.hpp"
-#include "img/ImgConverter.hpp"
-#include <string>
-
 
 int render_simple(std::string path) 
 {
