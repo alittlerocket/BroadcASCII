@@ -35,8 +35,7 @@ target_link_libraries(main sfml-graphics)
 add_executable(test_main 
     src/test_main.cpp 
     src/test/testcases.cpp
-    src/img/ImageConverter.cpp
-    src/img/RGBConverter.cpp
+    src/img/ImgConverter.cpp
 )
 
 # Link this too.

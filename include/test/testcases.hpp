@@ -6,7 +6,6 @@
 
 // Img converter and rgb converter
 #include "img/ImgConverter.hpp"
-#include "img/RGBConverter.hpp"
 
 #include <exception>
 #include <iostream>

@@ -1,7 +1,6 @@
 #include "test/testcases.hpp"
 #include "img/ImgConverter.hpp"
-#include "img/RGBConverter.hpp"
-#include <cstdlib>
+#include <string>
 
 
 int render_simple(std::string path) 
@@ -47,32 +46,14 @@ int render_simple(std::string path)
 
 int test_ascii_conversion(std::string path)
 {
-    // Get the image converter
-    img::ImageConverter i = img::ImageConverter(path);
-
-    // Load the rgb matrix.
-    i.load();
-
-    // Place it in a vector
-    std::vector<img::RGBMatrix> rgbMatrices = { i.get_rgbMatrix() };
-
-    // Initialize the rgb converter
-    img::RGBConverter r = img::RGBConverter(rgbMatrices);
-
-    // Render the matrices
-    r.render_ascii();
+    img::ImgASCII img_ascii = img::to_ASCII(path);
 
     // Print out what it look like
-    for ( const img::ImgASCII& mat : r.get_ascii() )
+    for ( const std::string& s : img_ascii )
     {
-        std::cout << "Image of " << path << std::endl;
-        for ( std::string s : mat)
-        {
-            for (char c : s)
-                std::cout << c << ' ';
-            std::cout << std::endl;
-        }
-        
+        for (char c : s)
+            std::cout << c << ' ';
+        std::cout << std::endl;
     }
 
     return EXIT_SUCCESS;

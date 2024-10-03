@@ -70,3 +70,6 @@ __pycache__/
 # Ignore OS-generated files
 Thumbs.db
 Desktop.ini
+
+# Ignore archive
+archive/
