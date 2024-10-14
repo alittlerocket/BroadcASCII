@@ -19,6 +19,7 @@ ImgASCII convertASCII(const sf::Image& img);
 
 // Main image processing function
 ImgASCII to_ASCII(std::string path);
+
 }
 
 

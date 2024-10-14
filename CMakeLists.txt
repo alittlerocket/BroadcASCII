@@ -36,6 +36,7 @@ add_executable(test_main
     src/test_main.cpp 
     src/test/testcases.cpp
     src/img/ImgConverter.cpp
+    src/vid/VideoGenerator.cpp
 )
 
 # Link this too.

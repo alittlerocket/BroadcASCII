@@ -13,4 +13,5 @@ int render_simple(std::string path);
 // Convert image
 int test_ascii_conversion(std::string path);
 
+
 #endif
