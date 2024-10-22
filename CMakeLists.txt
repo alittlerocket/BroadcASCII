@@ -6,39 +6,50 @@ cmake_minimum_required(VERSION 3.10)
 project(BroadcASCII)
 
 # Specify the C++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Don't build SFML's audio or network libs
-set(SFML_BUILD_AUDIO FALSE CACHE BOOL "" FORCE)
-set(SFML_BUILD_NETWORK FALSE CACHE BOOL "" FORCE)
-
-FetchContent_Declare(SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.1)
-
-FetchContent_MakeAvailable(SFML)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(AVFORMAT REQUIRED libavformat)
+pkg_check_modules(AVCODEC REQUIRED libavcodec)
+pkg_check_modules(AVUTIL REQUIRED libavutil)
+pkg_check_modules(SWSCALE REQUIRED libswscale)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include_directories(
 	include
-	${SFML_SOURCE_DIR}/include)
+    ${AVFORMAT_INCLUDE_DIRS}
+    ${AVCODEC_INCLUDE_DIRS}
+    ${AVUTIL_INCLUDE_DIRS}
+    ${SWSCALE_INCLUDE_DIRS}
+)
 
 # Add the main executable
 add_executable(main src/main.cpp)
 
 # Link against X11 and other necessary libraries (for image display functionality)
-target_link_libraries(main sfml-graphics)
+target_link_libraries(
+    main 
+    ${AVFORMAT_LIBRARIES}
+    ${AVCODEC_LIBRARIES}
+    ${AVUTIL_LIBRARIES}
+    ${SWSCALE_LIBRARIES}
+)
 
 # Add the testing executable
 add_executable(test_main 
     src/test_main.cpp 
     src/test/testcases.cpp
     src/img/ImgConverter.cpp
-    src/vid/VideoGenerator.cpp
 )
 
 # Link this too.
-target_link_libraries(test_main sfml-graphics)
+target_link_libraries(
+    test_main
+    ${AVFORMAT_LIBRARIES}
+    ${AVCODEC_LIBRARIES}
+    ${AVUTIL_LIBRARIES}
+    ${SWSCALE_LIBRARIES}
+)
 
