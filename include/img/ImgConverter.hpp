@@ -3,11 +3,11 @@
 
 #include <iostream>
 #include <cstdint>
+#include <libavutil/avutil.h>
 #include <vector>
 #include <string>
 #include <exception>
 
-// FFMpeg types forward declaration
 extern "C" {
     #include <libavformat/avformat.h>
     #include <libavcodec/avcodec.h>
@@ -31,17 +31,20 @@ class ImageToASCIIConverter {
         ImgASCII convert(const std::string& image_path);
 
     private:
-        AVFormatContext* format_ctx = nullptr;
+        AVFormatContext* fmt_ctx = nullptr;
         AVCodecContext* codec_ctx = nullptr;
+        const AVCodec* codec = nullptr;
         AVFrame* frame = nullptr;
         SwsContext* sws_ctx = nullptr;
         int video_stream_index = -1;
 
         // Probabily will include more characters, but this is good enough.
-        const std::string ascii_chars = "@%#*+=-:. ";
+        const std::string ascii_chars = "@%#*+=-:.";
+
+        int open_input_file(const std::string& path);
 
         // Load the image file using FFmpeg
-        bool load_image(const std::string& path);
+        int load_image();
 
         // Convert the decoded image to grayscale
         AVFrame* convert_to_grayscale();
@@ -68,6 +71,9 @@ class ImageConversionException : public std::exception {
     private:
         std::string msg_;
 };
+
+
+int find_stream_index(AVFormatContext* fmt_ctx, AVMediaType media_type);
 
 }
 

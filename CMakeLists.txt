@@ -39,8 +39,7 @@ target_link_libraries(
 
 # Add the testing executable
 add_executable(test_main 
-    src/test_main.cpp 
-    src/test/testcases.cpp
+    src/test_main.cpp
     src/img/ImgConverter.cpp
 )
 
