@@ -2,17 +2,24 @@
 #define IMG_CONVERTER_HPP
 
 #include <iostream>
+#include <algorithm>
 #include <cstdint>
-#include <libavutil/avutil.h>
 #include <vector>
 #include <string>
 #include <exception>
 
+
 extern "C" {
-    #include <libavformat/avformat.h>
     #include <libavcodec/avcodec.h>
+    #include <libavcodec/codec.h>
+    #include <libavcodec/codec_par.h>
+    #include <libavcodec/packet.h>
+    #include <libavformat/avformat.h>
+    #include <libavutil/avutil.h>
+    #include <libavutil/error.h>
+    #include <libavutil/frame.h>
+    #include <libavutil/pixfmt.h>
     #include <libswscale/swscale.h>
-    #include <libavutil/imgutils.h>
 }
 
 namespace img {
@@ -28,14 +35,12 @@ class ImageToASCIIConverter {
         ~ImageToASCIIConverter();
 
         // Function to convert an image from file to ASCII art
-        ImgASCII convert(const std::string& image_path);
+        std::vector<ImgASCII> convert(const std::string& image_path);
 
     private:
         AVFormatContext* fmt_ctx = nullptr;
         AVCodecContext* codec_ctx = nullptr;
         const AVCodec* codec = nullptr;
-        AVFrame* frame = nullptr;
-        SwsContext* sws_ctx = nullptr;
         int video_stream_index = -1;
 
         // Probabily will include more characters, but this is good enough.
@@ -43,14 +48,14 @@ class ImageToASCIIConverter {
 
         int open_input_file(const std::string& path);
 
-        // Load the image file using FFmpeg
-        int load_image();
+        // Load the image file, and convert all images.
+        std::vector<ImgASCII> load_images();
 
         // Convert the decoded image to grayscale
-        AVFrame* convert_to_grayscale();
+        AVFrame* convert_to_grayscale(AVFrame* frame);
 
         // Convert grayscale AVFrame to ASCII art
-        ImgASCII frame_to_ascii(const AVFrame* gray_frame);
+        ImgASCII frame_to_ascii(AVFrame* gray_frame);
 
         // Map a grayscale pixel value to an ASCII character
         char pixel_to_ascii(uint8_t pixel_value);
