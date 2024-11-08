@@ -1,13 +1,13 @@
-#include <vid/VidPlayer.hpp>
-#include <img/Converter.hpp>
+#include <CLI/CLI.hpp> // Include your CLI header
 
-int main() {
-    img::Converter ascii_converter = img::Converter(50, "test_files/bad_apple.mp4");
-    vid::VidPlayer vid_player = vid::VidPlayer();
+int main(int argc, char* argv[]) {
+    try {
+        CLI cli(argc, argv);
+        cli.run();
+    } catch (const std::exception& e) {
+        std::cerr << "An error occurred: " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
 
-    img::VidASCII ascii_video = ascii_converter.convert();
-    int fps = 30;
-
-    vid_player.play_video(ascii_video, fps);
-    return 0;
+    return EXIT_SUCCESS;
 }

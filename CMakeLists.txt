@@ -12,7 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Add the testing executable
-add_executable(test_main 
-    src/test_main.cpp
+add_executable(broadcascii 
+    src/CLI/CLI.cpp
     src/img/Converter.cpp
+    src/vid/VidPlayer.cpp
 )

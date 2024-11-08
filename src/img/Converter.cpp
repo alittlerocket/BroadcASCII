@@ -4,10 +4,10 @@ namespace img
 {
 
 // Constructor
-Converter::Converter(int target_width, std::string input) 
-{ 
-    _target_width = target_width;
-    read_dimensions(input);
+Converter::Converter(std::string input_path, int target_width, int target_height)
+    : _target_width(target_width), _target_height(target_height)
+{
+    read_dimensions(input_path);
 }
 
 

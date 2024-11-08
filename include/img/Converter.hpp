@@ -22,7 +22,7 @@ class Converter
 {
     public:
         // Constructor
-        Converter(int target_width, std::string input_path);
+        Converter(std::string input_path, int target_width = 80, int target_height = 24);
 
         // Destructor
         ~Converter();
@@ -35,7 +35,8 @@ class Converter
 
     private:
         // dimensions
-        int _target_width, _target_height;
+        int _target_width = 80;
+        int _target_height = 24;
         
         // FFmpeg command still yet to be determined. Needs width and height for proper scaling.
         std::string cmd;
