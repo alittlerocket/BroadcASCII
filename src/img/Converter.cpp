@@ -1,14 +1,13 @@
 #include <img/Converter.hpp>
 
-
 namespace img
 {
 
 // Constructor
-Converter::Converter(int target_width) 
+Converter::Converter(int target_width, std::string input) 
 { 
     _target_width = target_width;
-    read_dimensions();
+    read_dimensions(input);
 }
 
 
@@ -48,9 +47,10 @@ std::pair<int, int> Converter::get_target_dimensions()
 
 
 // read the dimensions from the ffmpeg cli
-void Converter::read_dimensions()
+void Converter::read_dimensions(std::string input)
 {
-    FILE* probe_pipe = popen("ffmprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 input.mp4", "r");
+    std::string probe_cmd = "ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 " + input;
+    FILE* probe_pipe = popen(probe_cmd.c_str(), "r");
     if (!probe_pipe) 
     {
         throw ConversionException("Failed to open probe pipe!");
@@ -62,7 +62,7 @@ void Converter::read_dimensions()
     
     // Set the corresponding class attributes
     _target_height = static_cast<int>(height / static_cast<double>(width) * _target_width * 0.5);
-    cmd = "ffmpeg -i input.mp4 -vf \"scale=" + std::to_string(_target_width) + ":" + std::to_string(_target_height) + ",format=rgb24\" -f rawvideo -";
+    cmd = "ffmpeg -i " + input + " -vf \"scale=" + std::to_string(_target_width) + ":" + std::to_string(_target_height) + ",format=rgb24\" -f rawvideo -";
 }
 
 
@@ -95,3 +95,4 @@ ImgASCII Converter::convert_frame_to_ascii(const std::vector<uint8_t>& frame_dat
 }
 
 } // namespace img.
+

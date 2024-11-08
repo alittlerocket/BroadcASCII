@@ -1,22 +1,28 @@
 #ifndef CONVERTER_HPP
 #define CONVERTER_HPP
 
-#include <img/ColoredAscii.hpp>
-
 #include <cstdint>
 #include <vector>
 #include <string>
 
 namespace img 
 {
-using ImgASCII = std::vector<std::vector<ColoredAscii>>;
+
+struct ColoredAscii
+{
+    char ascii_char;
+    uint8_t r,g,b;
+};
+
+using PixelASCII = std::vector<ColoredAscii>;
+using ImgASCII = std::vector<PixelASCII>;
 using VidASCII = std::vector<ImgASCII>;
 
 class Converter 
 {
     public:
         // Constructor
-        Converter(int target_width);
+        Converter(int target_width, std::string input_path);
 
         // Destructor
         ~Converter();
@@ -38,7 +44,7 @@ class Converter
         const std::string ascii_chars = "@%#*+=-:. ";
 
         // read the dimensions from the ffmpeg cli
-        void read_dimensions();
+        void read_dimensions(std::string input);
 
         // pixel conversion
         char pixel_to_ascii(uint8_t r, uint8_t g, uint8_t b);
