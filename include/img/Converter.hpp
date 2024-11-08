@@ -42,7 +42,7 @@ class Converter
         std::string cmd;
         
         // Characters that will be used in the actual ascii image
-        const std::string ascii_chars = "@%#*+=-:. ";
+        const std::string ascii_chars = ".:-=+*#%@";
 
         // read the dimensions from the ffmpeg cli
         void read_dimensions(std::string input);

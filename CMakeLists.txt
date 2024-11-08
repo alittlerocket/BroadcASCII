@@ -13,6 +13,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Add the testing executable
 add_executable(broadcascii 
+    src/main.cpp
     src/CLI/CLI.cpp
     src/img/Converter.cpp
     src/vid/VidPlayer.cpp

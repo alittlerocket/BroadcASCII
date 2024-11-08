@@ -70,7 +70,7 @@ void Converter::read_dimensions(std::string input)
 char Converter::pixel_to_ascii(uint8_t r, uint8_t g, uint8_t b)
 {
     // Calc brightness by averaging RGB values or weighted avg
-    int brightness = (0.3 * r) + (0.59 * g) * (0.11 * b);
+    int brightness = static_cast<int>((0.3 * r) + (0.59 * g) + (0.11 * b));
     int index = (brightness * (ascii_chars.size() - 1)) / 255;
     return ascii_chars[index];
 }

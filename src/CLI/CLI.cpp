@@ -14,11 +14,11 @@ void CLI::print_help()
 {
     std::cout << 
         "Usage: broadcascii [OPTION...] <input-video>\n" <<
-        "Converts the input video to ascii art with ANSI color codes" <<
-        "\t-h, --help                   display this help and exit\n" <<
-        "\t-f, --fps <desired_fps>      change the fps value to <desired_fps>\n" <<
-        "\t-w, --width <target_width>   sets the target_width to <target_width>. Default is current terminal width\n" <<
-        "\t-h, --height <target_height> sets the target_height to <targeT_height>. Default is current terminal height\n" <<
+        "Converts the input video to ascii art with ANSI color codes\n" <<
+        "\t-h, --help                       display this help and exit\n" <<
+        "\t-f, --fps <desired_fps>          change the fps value to <desired_fps>\n" <<
+        "\t-w, --width <target_width>       sets the target_width to <target_width>. Default is current terminal width\n" <<
+        "\t-h, --height <target_height>     sets the target_height to <targeT_height>. Default is current terminal height\n" <<
     std::endl;
 }
 
