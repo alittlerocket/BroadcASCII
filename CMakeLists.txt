@@ -17,4 +17,5 @@ add_executable(broadcascii
     src/CLI/CLI.cpp
     src/img/Converter.cpp
     src/vid/VidPlayer.cpp
+    src/vid/audio.cpp
 )

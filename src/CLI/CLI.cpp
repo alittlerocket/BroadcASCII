@@ -29,10 +29,10 @@ void CLI::set_default_dim()
         std::cerr << "ioctl" << std::endl;
         width = 80;
         height = 24;
+    } else {
+        width = w.ws_col;
+        height = w.ws_row;
     }
-    
-    width = w.ws_col - 1;
-    height = w.ws_row;
 }
 
 void CLI::parse_arguments(int argc, char* argv[])
@@ -90,14 +90,22 @@ void CLI::run()
     // Run conversion + play video
     try {
         // Class init
-        img::Converter converter = img::Converter(input_file, width);
+        img::Converter converter = img::Converter(input_file, width, height);
         vid::VidPlayer video_player = vid::VidPlayer();
 
         // Get video
         img::VidASCII frames = converter.convert();
 
+        // Start audio playback in a separate thread
+        std::thread audio_thread(vid::play_audio, input_file);
+
         // Play the video
         video_player.play_video(frames, fps);
+
+        // Wait for the audio thread to finish
+        audio_thread.join();
+
+    
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }

@@ -61,7 +61,6 @@ void Converter::read_dimensions(std::string input)
     pclose(probe_pipe);
     
     // Set the corresponding class attributes
-    _target_height = static_cast<int>(height * _target_width / (static_cast<double>(width) * 3));
     cmd = "ffmpeg -i " + input + " -vf \"scale=" + std::to_string(_target_width) + ":" + std::to_string(_target_height) + ",format=rgb24\" -f rawvideo -";
 }
 

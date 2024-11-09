@@ -3,6 +3,7 @@
 
 #include <img/Converter.hpp>
 #include <vid/VidPlayer.hpp>
+#include <vid/audio.hpp>
 
 
 class CLI
