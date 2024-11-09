@@ -50,6 +50,7 @@ This project uses ANSI escape codes to render ASCII art in full RGB color. Ensur
 
 - **FFmpeg Not Found**: Ensure FFmpeg is installed and available in your system’s PATH.
 - **Terminal Color Support**: For best results, use a terminal that supports true 24-bit color.
+- **Monospace characters are required**: Please use a monospace font, otherwise images will appear incorrect. I reocmmend Courier/Courier New.
 
 ## License
 
