@@ -31,7 +31,7 @@ void CLI::set_default_dim()
         height = 24;
     }
     
-    width = w.ws_col;
+    width = w.ws_col - 1;
     height = w.ws_row;
 }
 
@@ -90,7 +90,7 @@ void CLI::run()
     // Run conversion + play video
     try {
         // Class init
-        img::Converter converter = img::Converter(input_file, width, height);
+        img::Converter converter = img::Converter(input_file, width);
         vid::VidPlayer video_player = vid::VidPlayer();
 
         // Get video

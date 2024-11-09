@@ -61,7 +61,7 @@ void Converter::read_dimensions(std::string input)
     pclose(probe_pipe);
     
     // Set the corresponding class attributes
-    _target_height = static_cast<int>(height / static_cast<double>(width) * _target_width * 0.5);
+    _target_height = static_cast<int>(height * _target_width / (static_cast<double>(width) * 3));
     cmd = "ffmpeg -i " + input + " -vf \"scale=" + std::to_string(_target_width) + ":" + std::to_string(_target_height) + ",format=rgb24\" -f rawvideo -";
 }
 
@@ -69,14 +69,11 @@ void Converter::read_dimensions(std::string input)
 // pixel conversion
 char Converter::pixel_to_ascii(uint8_t r, uint8_t g, uint8_t b)
 {
-    // Calc brightness by averaging RGB values or weighted avg
     int brightness = static_cast<int>((0.3 * r) + (0.59 * g) + (0.11 * b));
     int index = (brightness * (ascii_chars.size() - 1)) / 255;
     return ascii_chars[index];
 }
 
-
-// process all the characters and store them
 ImgASCII Converter::convert_frame_to_ascii(const std::vector<uint8_t>& frame_data, int width, int height)
 {
     ImgASCII ascii_frame(height, std::vector<ColoredAscii>(width));
