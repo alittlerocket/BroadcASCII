@@ -1,11 +1,32 @@
+/*
+ * Converter.cpp
+ *
+ * This file contains the implementation of the Converter class, which is responsible
+ * for converting video frames to ASCII representations. The class provides methods
+ * to read video dimensions, scale video frames, and transform pixel data into ASCII
+ * characters with color preservation.
+ *
+ * Key Features:
+ * - Reads video dimensions using ffprobe and sets up ffmpeg for processing.
+ * - Converts each frame of the video into an ASCII art representation.
+ * - Allows scaling of frames to target dimensions and setting a target FPS.
+ *
+ * Dependencies:
+ * - Requires ffmpeg and ffprobe for video processing.
+ * - Relies on the `ColoredAscii` and `VidASCII` types for storing ASCII frame data.
+ *
+ * Author: Max Zhang
+ * Date: November 17, 2024
+ */
+
 #include <img/Converter.hpp>
 
 namespace img
 {
 
 // Constructor
-Converter::Converter(std::string input_path, int target_width, int target_height)
-    : _target_width(target_width), _target_height(target_height)
+Converter::Converter(std::string input_path, int target_fps, int target_width, int target_height)
+    : _target_width(target_width), _target_height(target_height), _target_fps(target_fps)
 {
     read_dimensions(input_path);
 }
@@ -61,7 +82,10 @@ void Converter::read_dimensions(std::string input)
     pclose(probe_pipe);
     
     // Set the corresponding class attributes
-    cmd = "ffmpeg -i " + input + " -vf \"scale=" + std::to_string(_target_width) + ":" + std::to_string(_target_height) + ",format=rgb24\" -f rawvideo -";
+    cmd = "ffmpeg -i " + input + 
+    " -vf \"scale=" + std::to_string(_target_width) + ":" + std::to_string(_target_height) 
+    + ",fps=" + std::to_string(_target_fps) +
+    + ",format=rgb24\" -f rawvideo -";
 }
 
 

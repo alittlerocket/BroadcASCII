@@ -25,6 +25,8 @@ class CLI
 
         void set_default_dim();
 
+        void set_default_fps();
+
         void parse_arguments(const int argc, char* argv[]);    
 };
 
